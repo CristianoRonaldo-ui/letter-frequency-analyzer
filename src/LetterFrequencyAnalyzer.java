@@ -32,6 +32,8 @@ public class LetterFrequencyAnalyzer {
 
             boolean anyLetterFound = false;
 
+            int maxCount = 0;
+            char maxLetter = ' ';
             for (int i = 0; i < counts.length; i++) {
                 if (counts[i] > 0) {
                     anyLetterFound = true;
@@ -39,11 +41,17 @@ public class LetterFrequencyAnalyzer {
                     String bar = "*".repeat(counts[i]);
                     double percentage = (counts[i] * 100.0) / totalLetters;
                     System.out.printf("%c : %s (%d, %.1f%%)%n", letter, bar, counts[i], percentage);
+                    if (counts[i] > maxCount) {
+                        maxCount = counts[i];
+                        maxLetter = letter;
+                    }
                 }
             }
 
             if (!anyLetterFound) {
                 System.out.println("No letters found in that input.");
+            } else {
+                System.out.println("Most frequent letter: '" + maxLetter + "' (" + maxCount + " times)");
             }
         }
 
