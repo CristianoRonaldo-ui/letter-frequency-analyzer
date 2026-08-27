@@ -19,12 +19,14 @@ public class LetterFrequencyAnalyzer {
                 continue;
             }
             int[] counts = new int[26];
+            int totalLetters = 0;
 
             for (char ch : input.toCharArray()) {
                 char lower = Character.toLowerCase(ch);
                 if (lower >= 'a' && lower <= 'z') {
                     int index = lower - 'a';
                     counts[index]++;
+                    totalLetters++;
                 }
             }
 
@@ -35,7 +37,8 @@ public class LetterFrequencyAnalyzer {
                     anyLetterFound = true;
                     char letter = (char) ('a' + i);
                     String bar = "*".repeat(counts[i]);
-                    System.out.printf("%c : %s (%d)%n", letter, bar, counts[i]);
+                    double percentage = (counts[i] * 100.0) / totalLetters;
+                    System.out.printf("%c : %s (%d, %.1f%%)%n", letter, bar, counts[i], percentage);
                 }
             }
 
